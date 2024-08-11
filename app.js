@@ -48,6 +48,7 @@ function reset(){
      for (let i = 0;i< grid.length; i++)
         {
                 container.removeChild(grid[i]);
+                arr.pop();
         }
 
         drawBoard();
