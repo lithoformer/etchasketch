@@ -24,7 +24,19 @@ body.style.justifyContent = 'space-evenly';
 const button = document.createElement('button');
 button.classList.add('reset');
 button.textContent = 'Reset';
-button.style.marginBottom = '50px';
+button.style.marginBottom = '30px';
+button.style.width = '100px';
+button.style.height = '30px';
+button.style.borderRadius = '15px';
+button.style.fontWeight = 'bold';
+button.style.backgroundColor = 'slateblue';
+button.style.color = 'white';
+button.style.boxShadow = '12px 12px 2px 1px rgba(128, 128, 128, .5)';
+button.style.fontOpticalSizing = `auto`;
+button.style.fontWeight = `normal`;
+button.style.fontStyle = `normal`;
+button.style.fontSize = `20px`;
+button.style.border = 'none';
 body.appendChild(button);
 body.insertBefore(button,container);
 
@@ -42,7 +54,7 @@ button.addEventListener('click', reset);
 
 function reset(){
     do{
-        size = parseInt(prompt('Please enter a number between 1 and 100'));
+        size = parseInt(prompt('Please enter a grid density between 1 and 100'));
     }while (size > 100 || size < 1);
 
      for (let i = 0;i< grid.length; i++)
@@ -66,6 +78,8 @@ function drawBoard(){
                 arr.push({setColor:false,opacity:0});
             }
         }
+
+        body.appendChild(container);
 
         grid = document.querySelectorAll('.grid');
 
@@ -96,4 +110,4 @@ function getRandom(val)
     return Math.floor(Math.random() * val);
 }
 
-reset();
+drawBoard();
