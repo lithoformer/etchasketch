@@ -5,20 +5,34 @@ let divSize = containerSide/size;
 const container = document.querySelector('.container');
 container.style.maxWidth = containerSide+'px';
 container.style.maxHeight = containerSide+'px';
-container.style.marginLeft = (containerSide/2)+'px';
-container.style.marginTop = (containerSide/5)+'px';
+
+container.style.display='flex';
+container.style.flexDirection = 'column';
+container.style.justifyContent = 'center';
+container.style.flexWrap = 'wrap';
+container.style.alignItems = 'center';
 
 const body = document.querySelector('body');
 
+body.style.display = 'flex';
+body.style.flexDirection = 'column';
+body.style.alignItems = 'center';
+body.style.justifyContent = 'space-evenly';
+
 const button = document.createElement('button');
 button.classList.add('reset');
+button.textContent = 'Reset';
+button.style.marginBottom = '50px';
 body.appendChild(button);
 body.insertBefore(button,container);
 
-button.style.position = 'absolute';
-button.style.top = '50px';
-button.style.left = containerSide+'px';
-button.textContent = 'Reset';
+
+const title = document.createElement('h1');
+title.classList.add('title');
+title.textContent = 'Etch-A-Sketch';
+
+body.appendChild(title);
+body.insertBefore(title,button);
 
 for (let i = 0;i < size;i++)
 {
@@ -41,12 +55,6 @@ for (let i = 0;i< grid.length; i++)
         e.currentTarget.style.backgroundColor = 'black';
     });
 }
-
-container.style.display='flex';
-container.style.flexDirection = 'column';
-container.style.justifyContent = 'center';
-container.style.flexWrap = 'wrap';
-container.style.alignItems = 'center';
 
 button.addEventListener('click', reset);
 
