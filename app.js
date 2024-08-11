@@ -1,6 +1,8 @@
 let size = 16;
 let containerSide = 1000;
 let divSize = containerSide/size;
+const rgb = 255;
+let arr = [];
 
 const container = document.querySelector('.container');
 container.style.maxWidth = containerSide+'px';
@@ -34,27 +36,7 @@ title.textContent = 'Etch-A-Sketch';
 body.appendChild(title);
 body.insertBefore(title,button);
 
-for (let i = 0;i < size;i++)
-{
-    for (let j = 0;j < size;j++)
-    {
-        container.innerHTML += `<div class="grid"></div>`;
-    }
-}
-
 let grid = document.querySelectorAll('.grid');
-
-for (let i = 0;i< grid.length; i++)
-{
-    grid[i].style.border = '1px solid black';
-    grid[i].style.boxSizing= 'border-box';
-    grid[i].style.width = divSize+'px';
-    grid[i].style.height = divSize+'px';
-    grid[i].style.display='flex';
-    grid[i].addEventListener('mouseover',function (e){
-        e.currentTarget.style.backgroundColor = 'black';
-    });
-}
 
 button.addEventListener('click', reset);
 
@@ -68,18 +50,19 @@ function reset(){
                 container.removeChild(grid[i]);
         }
 
-        divSize = containerSide/size;
-
         drawBoard();
 }
 
 function drawBoard(){
+
+    divSize = containerSide/size;
 
     for (let i = 0;i < size;i++)
         {
             for (let j = 0;j < size;j++)
             {
                 container.innerHTML += `<div class="grid"></div>`;
+                arr.push({setColor:false,opacity:0});
             }
         }
 
@@ -92,8 +75,24 @@ function drawBoard(){
             grid[i].style.width = divSize+'px';
             grid[i].style.height = divSize+'px';
             grid[i].style.display='flex';
-            grid[i].addEventListener('mouseover',function (e){
-                e.currentTarget.style.backgroundColor = 'black';
+            grid[i].addEventListener('mouseover', function(e){
+                if(arr[i].setColor === false)
+                {
+                const r = getRandom(rgb);
+                const g = getRandom(rgb);
+                const b = getRandom(rgb);
+                e.currentTarget.style.backgroundColor = `rgb(${r},${g},${b})`;
+                arr[i].setColor = true;
+                }
+                e.currentTarget.style.opacity = `${arr[i].opacity}`;
+                arr[i].opacity += .1;
             });
         }
 }
+
+function getRandom(val)
+{
+    return Math.floor(Math.random() * val);
+}
+
+reset();
