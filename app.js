@@ -37,9 +37,17 @@ button.style.fontWeight = `normal`;
 button.style.fontStyle = `normal`;
 button.style.fontSize = `20px`;
 button.style.border = 'none';
+
+button.addEventListener('mouseover',(e)=>{
+e.currentTarget.style.backgroundColor ='blue'
+})
+
+button.addEventListener('mouseleave',(e)=>{
+    e.currentTarget.style.backgroundColor ='slateblue'
+    })
+
 body.appendChild(button);
 body.insertBefore(button,container);
-
 
 const title = document.createElement('h1');
 title.classList.add('title');
@@ -50,9 +58,10 @@ body.insertBefore(title,button);
 
 let grid = document.querySelectorAll('.grid');
 
-button.addEventListener('click', reset);
+button.addEventListener('mousedown', reset);
 
 function reset(){
+
     do{
         size = parseInt(prompt('Please enter a grid density between 1 and 100'));
     }while (size > 100 || size < 1);
