@@ -58,7 +58,7 @@ body.insertBefore(title,button);
 
 let grid = document.querySelectorAll('.grid');
 
-button.addEventListener('mousedown', reset);
+button.addEventListener('mouseup', reset);
 
 function reset(){
 
